@@ -1,0 +1,57 @@
+
+services:
+
+  backend:  
+    container_name: blog-backend
+    depends_on:
+      - db
+    build:     
+      context:  ./backend
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    ports:
+      - 3000:3000
+    networks: 
+      - frontend
+      - backend
+    volumes:
+      - ./backend/src:/usr/app/src
+    
+
+  # frontend:
+  #   container_name: timesongs-frontend
+  #   depends_on:
+  #     - backend
+  #   build: 
+  #     context: ./frontend
+  #     dockerfile: Dockerfile      
+  #   command: npm run dev
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - frontend
+  #   volumes:
+  #     - ./frontend/src:/usr/app/src
+  #     - ./frontend/public:/usr/app/public
+
+  db:
+    container_name: blog-mongo-db
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
