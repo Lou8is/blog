@@ -18,23 +18,23 @@ services:
       - ./backend/src:/usr/app/src
     
 
-  # frontend:
-  #   container_name: timesongs-frontend
-  #   depends_on:
-  #     - backend
-  #   build: 
-  #     context: ./frontend
-  #     dockerfile: Dockerfile      
-  #   command: npm run dev
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - frontend
-  #   volumes:
-  #     - ./frontend/src:/usr/app/src
-  #     - ./frontend/public:/usr/app/public
+  frontend:
+    container_name: blog-frontend
+    depends_on:
+      - backend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile      
+    command: npm run dev
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - 5173:5173
+    networks:
+      - frontend
+    volumes:
+      - ./frontend/src:/usr/app/src
+      - ./frontend/public:/usr/app/public
 
   db:
     container_name: blog-mongo-db
