@@ -3,9 +3,13 @@
 </script>
 
 <template>
-    <p>footer</p>
+    <div id="footer">
+        <p>footer</p>
+    </div>
 </template>
 
 <style scoped>
-
+    #footer {
+        background-color: aqua;
+    }
 </style>
