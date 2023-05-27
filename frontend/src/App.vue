@@ -1,20 +1,20 @@
 <script setup lang="ts">
-
+import Header from './components/Header.vue'
+import Home from './components/Home.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <Header/>
   </header>
 
   <main>
-    <p>main here</p>
+    <Home/>
   </main>
 
   <footer>
-
+    <Footer/>
   </footer>
 </template>
 
