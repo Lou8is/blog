@@ -3,13 +3,13 @@
 </script>
 
 <template>
-    <div id="footer">
+    <v-footer>
         <p>footer</p>
-    </div>
+    </v-footer>
 </template>
 
 <style scoped>
-    #footer {
-        background-color: aqua;
+    footer {
+        max-height: 10vh;
     }
 </style>
