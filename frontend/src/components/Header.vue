@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    
+    import { mdiMenu } from '@mdi/js';
     import { useDisplay } from 'vuetify';
 
     const { mdAndUp } = useDisplay();
@@ -32,7 +32,7 @@
           <span v-else>
             <v-menu>
               <template v-slot:activator="{ props }">
-                <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
+                <v-btn :icon="mdiMenu" v-bind="props"></v-btn>
               </template>
               <v-list>
               <v-list-item
