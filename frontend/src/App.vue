@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
-import Home from './components/Home.vue'
 import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <header>
+  <v-app>
     <Header/>
-  </header>
 
-  <main>
-    <Home/>
-  </main>
+    <v-main>
+      <RouterView />
+    </v-main>
 
-  <footer>
     <Footer/>
-  </footer>
+  </v-app>
 </template>
 
 <style scoped>
-  main {
-    height: 100%;
-  }
+  
 </style>
