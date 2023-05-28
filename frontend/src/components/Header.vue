@@ -5,10 +5,10 @@
     const { mdAndUp } = useDisplay();
 
     const menuItems: Array<any> = [
-        { title: 'HOME' },
-        { title: 'BLOG' },
-        { title: 'TUTORIALS' },
-        { title: 'ABOUT HERE' },
+        { title: 'HOME', url: '/'},
+        { title: 'ARTICLES', url: '/articles'},
+        { title: 'TUTORIALS', url: '/tutorials' },
+        { title: 'ABOUT HERE', url: '/about' },
       ];
 </script>
 
@@ -27,6 +27,7 @@
             <v-btn variant="text"
               v-for="(item, i) in menuItems"
               :key="i"
+              :to="item.url"
             >{{ item.title }}</v-btn>
           </span>
           <span v-else>
