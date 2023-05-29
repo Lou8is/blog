@@ -13,5 +13,10 @@ export default defineConfig({
   },
   server: {
     host: true,
-  }
+    proxy: {
+      '/auth': {
+        target: 'http://blog-backend:3000'
+      }
+    }
+  },
 })

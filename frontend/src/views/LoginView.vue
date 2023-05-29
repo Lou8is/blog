@@ -1,0 +1,31 @@
+<script setup lang="ts">
+    import Auth  from '@/router/auth'
+
+    let username: string = "";
+    let password: string = "";
+
+    async function login() {
+        Auth.login(username, password);
+    }
+</script>
+
+<template>
+    
+    <div>
+    <h1>LOGIN</h1>
+    <form @submit.prevent="login">
+      <input v-model="username" placeholder="username" />
+      <br />
+      <br />
+      <input v-model="password" placeholder="password" type="password" />
+      <br />
+      <br />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+</template>
+
+<style scoped>
+
+</style>
