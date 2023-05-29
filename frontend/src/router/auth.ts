@@ -1,5 +1,6 @@
 import axios from 'axios';
 import jwtDecode, { type JwtPayload } from "jwt-decode";
+import router from '.';
 
 //source of most code here : https://chrismroberts.com/2019/01/03/authentication-and-protected-routes-in-vuejs/
 
@@ -7,14 +8,15 @@ export default abstract class Auth {
 
     private static readonly JWT_TOKEN_STORAGE_KEY = "jwt_token";
 
-    public static async login(username: string, password: string) {
-        await axios.post('/auth/login', {
+    public static login(username: string, password: string, redirect: string = 'home'): void {
+        axios.post('/auth/login', {
             username: username,
             password: password
         })
         .then(function (response) {
             console.log(response);
             Auth.setAuthToken(response.data.access_token);
+            router.push({ name: redirect })
         })
         .catch(function (error) {
             console.log(error);

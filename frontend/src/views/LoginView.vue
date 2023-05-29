@@ -1,11 +1,11 @@
 <script setup lang="ts">
-    import Auth  from '@/router/auth'
+    import Auth from '@/router/auth'
 
     let username: string = "";
     let password: string = "";
 
-    async function login() {
-        Auth.login(username, password);
+    function login() {
+        Auth.login(username, password, "admin");
     }
 </script>
 
