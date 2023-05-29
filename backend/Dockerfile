@@ -8,7 +8,6 @@ RUN npm install
 
 #copy files not in .dockerignore
 COPY . .
-COPY .env.docker .env
 
 RUN npm run build
 
