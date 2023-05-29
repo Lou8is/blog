@@ -40,18 +40,26 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      beforeEnter: async (to, from) => { return guardAlreadyLogged()},
     },
   ]
 })
 
 async function guardAdmin(): Promise<string | boolean> {
-  const isAdmin = await Auth.isUserAdmin();
-  if (!isAdmin)
+  if (!Auth.isUserAdmin())
     return '/login';
   else
     return true;
 }
+
+async function guardAlreadyLogged(): Promise<string | boolean> {
+  if (Auth.isLoggedIn())
+    return '/';
+  else
+    return true;
+}
+
 
 
 export default router
