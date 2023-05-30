@@ -1,26 +1,27 @@
 <script setup lang="ts">
     import Auth from '@/router/auth'
     import { ref, type Ref } from 'vue'
-    import Editor from '@/components/Editor.vue'
+    import Editor from '@/components/Editor/Editor.vue'
 
-    const content = ref('<p>A Vue.js wrapper component for tiptap to use <code>v-model</code>.</p>')
+    const content = ref('Write that cool stuff in here!')
 
 </script>
 
 <template>
+    <v-card id="editor_container" variant="tonal"> 
+        <editor v-model="content"/>
+    </v-card>
 
-    <div>
-        
-        <editor v-model="content" />
-
-        <div class="content">
+    <div class="content">
         <h3>Content</h3>
         <pre><code>{{ content }}</code></pre>
         </div>
-    </div>
-
 </template>
 
 <style scoped>
-
+    #editor_container {
+        height: 50%;
+        border: 10px black;
+        margin: 5px;
+    }
 </style>

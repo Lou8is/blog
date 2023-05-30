@@ -1,5 +1,15 @@
+<script setup lang="ts">
+    import { Editor } from '@tiptap/vue-3'
+
+    interface Props {
+        editor: Editor,
+    }
+    
+    const props = defineProps<Props>();
+
+</script>
+
 <template>
-    <div v-if="editor">
         <v-btn size="small" class="mx-1" @click="editor.chain().focus().toggleBold().run()" :disabled="!editor.can().chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
         bold
         </v-btn>
@@ -63,127 +73,8 @@
         <v-btn size="small" class="mx-1" @click="editor.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
         redo
         </v-btn>
-    </div>
-    <editor-content :editor="editor" />
 </template>
-  
-<script lang="ts">
-    import StarterKit from '@tiptap/starter-kit'
-    import { Editor, EditorContent } from '@tiptap/vue-3'
 
-    export default {
-        components: {
-        EditorContent,
-        },
-    
-        props: {
-        modelValue: {
-            type: String,
-            default: '',
-        },
-        },
-    
-        emits: ['update:modelValue'],
-    
-        data() {
-        return {
-            editor: null as any,
-        }
-        },
-    
-        watch: {
-        modelValue(value: string) {
-            // HTML
-            const isSame = this.editor?.getHTML() === value
-    
-            // JSON
-            // const isSame = JSON.stringify(this.editor?.getJSON()) === JSON.stringify(value)
-    
-            if (isSame) {
-            return
-            }
-    
-            this.editor?.commands.setContent(value, false)
-        },
-        },
-    
-        mounted() {
-        this.editor = new Editor({
-            extensions: [
-                StarterKit,
-            ],
-            content: this.modelValue,
-            onUpdate: () => {
-            // HTML
-            this.$emit('update:modelValue', this.editor?.getHTML())
-    
-            // JSON
-            // this.$emit('update:modelValue', this.editor.getJSON())
-            },
-        })
-        },
-    
-        beforeUnmount() {
-        this.editor?.destroy()
-        },
-    }
-</script>
+<style scoped>
 
-<style lang="scss">
-/* Basic editor styles */
-.ProseMirror {
-  > * + * {
-    margin-top: 0.75em;
-  }
-
-  ul,
-  ol {
-    padding: 0 1rem;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.1;
-  }
-
-  code {
-    background-color: rgba(#616161, 0.1);
-    color: #616161;
-  }
-
-  pre {
-    background: #0D0D0D;
-    color: #FFF;
-    font-family: 'JetBrainsMono', monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-
-    code {
-      color: inherit;
-      padding: 0;
-      background: none;
-      font-size: 0.8rem;
-    }
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  blockquote {
-    padding-left: 1rem;
-    border-left: 2px solid rgba(#0D0D0D, 0.1);
-  }
-
-  hr {
-    border: none;
-    border-top: 2px solid rgba(#0D0D0D, 0.1);
-    margin: 2rem 0;
-  }
-}
 </style>
