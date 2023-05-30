@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue'
-import Blog from '../views/ArticlesView.vue'
-import Tuto from '../views/TutorialsView.vue'
+import Article from '../views/Articles/ArticlesView.vue'
+import AddArticle from '../views/Articles/AddArticleView.vue'
+import Tuto from '../views/Tutorials/TutorialsView.vue'
 import About from '../views/AboutView.vue'
 import Admin from '../views/AdminView.vue'
 import Login from '../views/LoginView.vue'
@@ -19,7 +20,7 @@ const router = createRouter({
     {
       path: '/articles',
       name: 'articles',
-      component: Blog
+      component: Article
     },
     {
       path: '/tutorials',
@@ -35,6 +36,12 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: Admin,
+      beforeEnter: async (to, from) => { return guardAdmin()},
+    },     
+    {
+      path: '/admin/articles/new',
+      name: 'newArticle',
+      component: AddArticle,
       beforeEnter: async (to, from) => { return guardAdmin()},
     },    
     {
