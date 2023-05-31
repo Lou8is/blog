@@ -6,6 +6,7 @@ import Tuto from '../views/Tutorials/TutorialsView.vue'
 import About from '../views/AboutView.vue'
 import Admin from '../views/AdminView.vue'
 import Login from '../views/LoginView.vue'
+import NotFound from '../views/NotFoundView.vue'
 
 import Auth from './auth';
 
@@ -49,6 +50,10 @@ const router = createRouter({
       name: 'login',
       component: Login,
       beforeEnter: async (to, from) => { return guardAlreadyLogged()},
+    },    
+    {
+      path: "/:notFound",
+      component: NotFound,
     },
   ]
 })
