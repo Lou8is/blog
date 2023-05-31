@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwtDecode, { type JwtPayload } from "jwt-decode";
-import router from '.';
+import router from '@/router';
 
 //source of most code here : https://chrismroberts.com/2019/01/03/authentication-and-protected-routes-in-vuejs/
 

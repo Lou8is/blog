@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import Auth from '@/router/auth'
+    import Auth from '@/services/authService'
     import { ref, type Ref } from 'vue'
     
     let username: Ref<string> = ref("");
