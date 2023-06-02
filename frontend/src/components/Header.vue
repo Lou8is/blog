@@ -17,10 +17,15 @@
         density="compact"
       >
         <template v-slot:prepend>
-          
+          <v-img
+            src="/public/lomrlogo_blank.png"           
+            width="48px" 
+            :aspect-ratio="1"
+          >
+          </v-img>
         </template>
 
-        <v-app-bar-title>LOMR</v-app-bar-title>
+        <v-app-bar-title>LOMR: A personnal tech blog</v-app-bar-title>
 
         <template v-slot:append>
           <span v-if="mdAndUp">
