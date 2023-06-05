@@ -40,7 +40,7 @@ services:
     container_name: blog-mongo-db
     image: mongo:latest
     ports:
-      - 27017:27017
+      - 8918:27017
     networks:
       - backend
     volumes:
