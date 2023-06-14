@@ -1,9 +1,10 @@
 
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { UsersService } from 'src/users/users.service';
 import { EmailService } from 'src/email/email.service';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -23,8 +24,8 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+  async login(user: User) {
+    const payload = { username: user.email, sub: user.email };
     return {
       access_token: this.jwtService.sign(payload),
     };
@@ -43,11 +44,26 @@ export class AuthService {
           "me@lomr.fr",
           "noreply@lomr.fr",
           "Subject",
-          magictoken,
-          "<p>"+magictoken+"</p>"
+          "http://localhost:3000/auth/login/"+magictoken,
+          "<p>"+"http://localhost:3000/auth/login/"+magictoken+"</p>"
         )
       return { magic: magictoken };
     }
     return {message: "Request processed"};
+  }
+
+  async validateMagicLink(token: string): Promise<User | null> {
+
+    return await this.jwtService.verifyAsync(token)
+      .then((result) => {
+        Logger.log(result);
+        const user = this.usersService.findOneByEmail(result.sub);
+        Logger.log(user);
+        return user;
+      })
+      .catch((error) => {
+        Logger.log(error);
+        throw new UnauthorizedException();
+      });
   }
 }
