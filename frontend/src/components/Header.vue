@@ -44,6 +44,7 @@
               <v-list-item
                   v-for="(item, i) in menuItems"
                   :key="i"
+                  :to="item.url"
                 >
                   <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
