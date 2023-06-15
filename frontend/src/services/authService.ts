@@ -8,11 +8,8 @@ export default abstract class Auth {
 
     private static readonly JWT_TOKEN_STORAGE_KEY = "jwt_token";
 
-    public static login(username: string, password: string, redirect: string = 'home'): void {
-        axios.post('/auth/login', {
-            username: username,
-            password: password
-        })
+    public static login(token: string, redirect: string = 'home'): void {
+        axios.get('/auth/login/'+token)
         .then(function (response) {
             console.log(response);
             Auth.setAuthToken(response.data.access_token);
@@ -20,6 +17,20 @@ export default abstract class Auth {
         })
         .catch(function (error) {
             console.log(error);
+        });
+    }
+
+    public static async requestToken(email: string): Promise<boolean> {
+        return await axios.post('/auth/login', {
+            email: email,
+        })
+        .then(function (response) {
+            console.log(response);
+            return true;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return false;
         });
     }
 

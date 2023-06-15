@@ -46,7 +46,7 @@ const router = createRouter({
       beforeEnter: async (to, from) => { return guardAdmin()},
     },    
     {
-      path: '/login',
+      path: '/login/:token?',
       name: 'login',
       component: Login,
       beforeEnter: async (to, from) => { return guardAlreadyLogged()},
