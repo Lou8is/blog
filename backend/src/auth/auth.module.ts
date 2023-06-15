@@ -18,11 +18,12 @@ import { EmailModule } from 'src/email/email.module';
     UsersModule,
     PassportModule,
     EmailModule,
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '60d' },
+        secret: configService.get<string>('jwt_secret'),
+        signOptions: { expiresIn: '15d' },
       }),
       inject: [ConfigService]
     }),

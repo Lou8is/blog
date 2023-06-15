@@ -6,5 +6,6 @@ export default () => ({
     smtp_port: process.env.SMTP_PORT,
     smtp_user: process.env.SMTP_USER,
     smtp_password: process.env.SMTP_PASSWORD,
+    front_ext_url: process.env.FRONT_EXT_URL,
 });
   

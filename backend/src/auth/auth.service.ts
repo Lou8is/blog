@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { EmailService } from 'src/email/email.service';
 import { User } from 'src/users/entities/user.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private emailService: EmailService,
+    private configService: ConfigService,
   ) {}
 
   async validateUser(email: string): Promise<any> {
@@ -40,12 +42,14 @@ export class AuthService {
       const payload = { username: user.email, sub: user.email };
       const magictoken = this.jwtService.sign(payload, {expiresIn: '600s'})
 
+      const content = this.configService.get<string>('front_ext_url')+"/auth/login/"+magictoken;
+      
       this.emailService.sendRawMail(
-          "me@lomr.fr",
+          user.email,
           "noreply@lomr.fr",
-          "Subject",
-          "http://localhost:3000/auth/login/"+magictoken,
-          "<p>"+"http://localhost:3000/auth/login/"+magictoken+"</p>"
+          "Login to LOMR",
+          content,
+          "<p>"+content+"</p>"
         )
       return { magic: magictoken };
     }
