@@ -18,7 +18,7 @@
       >
         <template v-slot:prepend>
           <v-img
-            src="/public/lomrlogo_blank.png"           
+            src="/lomrlogo_blank.png"           
             width="48px" 
             :aspect-ratio="1"
           >
