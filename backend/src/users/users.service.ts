@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, sanitizeFilter } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
@@ -15,7 +15,8 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string): Promise<User | null> {
-    return this.userModel.findOne({ email: email}).exec();
+    const request = sanitizeFilter({ email: email})
+    return this.userModel.findOne(request).exec();
   }
 
   /*
