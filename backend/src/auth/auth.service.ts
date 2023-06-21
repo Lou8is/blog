@@ -51,7 +51,6 @@ export class AuthService {
           content,
           "<p>"+content+"</p>"
         )
-      return { magic: magictoken };
     }
     return {message: "Request processed"};
   }
