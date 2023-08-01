@@ -33,7 +33,7 @@
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
     "handlebars": "^4.7.7",
-    "mongoose": "^7.3.3",
+    "mongoose": "^7.4.1",
     "nestjs-seeder": "^0.3.1",
     "nodemailer": "^6.9.3",
     "passport": "^0.6.0",
